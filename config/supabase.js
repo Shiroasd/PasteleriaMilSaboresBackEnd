@@ -1,18 +1,6 @@
 const { createClient } = require('@supabase/supabase-js');
-require('dotenv').config();
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-if (!supabaseUrl || !supabaseServiceRoleKey) {
-  console.warn('⚠️ Faltan variables de entorno de Supabase. Revisa SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY');
-}
-
-const supabase = createClient(supabaseUrl, supabaseServiceRoleKey, {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: false
-  }
-});
+// Crear cliente Supabase usando variables de entorno definidas en .env o en Vercel
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
 module.exports = { supabase };
